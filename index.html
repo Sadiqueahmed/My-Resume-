@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,10 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary-color: #0f172a;
-      --accent-color: #6366f1;
-      --bg-color: #f8fafc;
-      --text-color: #1e293b;
+      --bg-light: #f9fafb;
+      --bg-dark: #0f172a;
+      --text-light: #0f172a;
+      --text-dark: #f8fafc;
+      --accent: #6366f1;
+      --box: #ffffff;
+      --box-dark: #1e293b;
+    }
+
+    [data-theme="dark"] {
+      --bg-light: #0f172a;
+      --text-light: #f8fafc;
+      --box: #1e293b;
     }
 
     * {
@@ -21,39 +30,54 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
-      background: linear-gradient(90deg, #6366f1, #60a5fa);
-      padding: 2rem;
-      text-align: center;
+      background: linear-gradient(to right, #6366f1, #3b82f6);
       color: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem 1rem;
+      text-align: center;
     }
 
     header h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     header p {
       font-size: 1.1rem;
-      opacity: 0.9;
+      opacity: 0.95;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background-color: #1e293b;
+      color: #f8fafc;
     }
 
     .resume-container {
-      flex: 1;
       max-width: 1000px;
-      margin: 3rem auto;
-      background-color: white;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-      border-radius: 10px;
+      margin: 2rem auto;
+      background-color: var(--box);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       overflow: hidden;
+      transition: background-color 0.3s ease;
     }
 
     iframe {
@@ -64,14 +88,20 @@
 
     footer {
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
       font-size: 0.9rem;
       background-color: #e2e8f0;
       color: #475569;
+      margin-top: 2rem;
+    }
+
+    [data-theme="dark"] footer {
+      background-color: #1e293b;
+      color: #94a3b8;
     }
 
     a {
-      color: var(--accent-color);
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -80,32 +110,50 @@
     }
 
     @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
       iframe {
         height: 700px;
       }
+    }
 
-      header h1 {
-        font-size: 2rem;
+    @media (max-width: 480px) {
+      .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
   <header>
     <h1>Sadique Ahmed</h1>
-    <p>Explore My Resume</p>
+    <p>Professional Resume</p>
   </header>
 
-  <div class="resume-container">
+  <main class="resume-container">
     <iframe src="https://drive.google.com/file/d/1LdT6x_90PlIF8st4R3TdNH7JnEYOBJrZ/preview" allow="autoplay"></iframe>
-  </div>
+  </main>
 
   <footer>
-    &copy; 2025 Sadique Ahmed · 
-    <a href="mailto:youremail@example.com">Contact Me</a> · 
+    &copy; 2025 Sadique Ahmed &middot;
+    <a href="mailto:youremail@example.com">Email</a> |
     <a href="https://www.linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a>
   </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+    }
+  </script>
 
 </body>
 </html>
