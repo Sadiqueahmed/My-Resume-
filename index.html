@@ -2,24 +2,23 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sadique Ahmed | Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg-light: #f9fafb;
+      --bg-light: #f3f4f6;
+      --text-light: #111827;
       --bg-dark: #0f172a;
-      --text-light: #0f172a;
       --text-dark: #f8fafc;
-      --accent: #6366f1;
-      --box: #ffffff;
-      --box-dark: #1e293b;
+      --glass-bg-light: rgba(255, 255, 255, 0.65);
+      --glass-bg-dark: rgba(30, 41, 59, 0.55);
+      --accent: #8b5cf6;
     }
 
     [data-theme="dark"] {
       --bg-light: #0f172a;
       --text-light: #f8fafc;
-      --box: #1e293b;
     }
 
     * {
@@ -28,120 +27,130 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
+    html, body {
+      font-family: 'Poppins', sans-serif;
       background-color: var(--bg-light);
       color: var(--text-light);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
     }
 
-    header {
-      background: linear-gradient(to right, #6366f1, #3b82f6);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
+    .background-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 20% 30%, #8b5cf6 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, #3b82f6 0%, transparent 50%);
+      filter: blur(90px);
     }
 
-    header h1 {
+    .container {
+      width: 90%;
+      max-width: 960px;
+      margin-top: 2rem;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      background-color: var(--glass-bg-light);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s;
+    }
+
+    [data-theme="dark"] .container {
+      background-color: var(--glass-bg-dark);
+    }
+
+    h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.3rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
 
-    header p {
+    p.subtitle {
+      text-align: center;
       font-size: 1.1rem;
-      opacity: 0.95;
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    [data-theme="dark"] .theme-toggle {
-      background-color: #1e293b;
-      color: #f8fafc;
-    }
-
-    .resume-container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      background-color: var(--box);
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      transition: background-color 0.3s ease;
+      margin-bottom: 2rem;
+      color: var(--accent);
     }
 
     iframe {
       width: 100%;
-      height: 1000px;
+      height: 900px;
       border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
     footer {
+      margin: 2rem 0;
       text-align: center;
-      padding: 1.5rem 1rem;
       font-size: 0.9rem;
-      background-color: #e2e8f0;
-      color: #475569;
-      margin-top: 2rem;
+      color: #6b7280;
     }
 
-    [data-theme="dark"] footer {
-      background-color: #1e293b;
-      color: #94a3b8;
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+    .theme-toggle:hover {
+      background-color: #7c3aed;
     }
 
     @media (max-width: 768px) {
-      header h1 {
+      h1 {
         font-size: 2rem;
       }
-
       iframe {
-        height: 700px;
+        height: 600px;
       }
     }
 
     @media (max-width: 480px) {
       .theme-toggle {
         padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  <div class="background-gradient"></div>
 
-  <header>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span> Toggle Theme
+  </button>
+
+  <div class="container">
     <h1>Sadique Ahmed</h1>
-    <p>Professional Resume</p>
-  </header>
-
-  <main class="resume-container">
+    <p class="subtitle">Resume Viewer</p>
     <iframe src="https://drive.google.com/file/d/1LdT6x_90PlIF8st4R3TdNH7JnEYOBJrZ/preview" allow="autoplay"></iframe>
-  </main>
+  </div>
 
   <footer>
-    &copy; 2025 Sadique Ahmed &middot;
+    &copy; 2025 Sadique Ahmed &middot; 
     <a href="mailto:youremail@example.com">Email</a> |
     <a href="https://www.linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a>
   </footer>
@@ -149,9 +158,11 @@
   <script>
     function toggleTheme() {
       const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       html.setAttribute('data-theme', newTheme);
+      icon.textContent = newTheme === 'light' ? '🌙' : '☀️';
     }
   </script>
 
