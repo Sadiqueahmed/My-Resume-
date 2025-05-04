@@ -33,10 +33,8 @@
       color: var(--text-light);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      overflow-x: hidden;
+      align-items: center;
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -49,19 +47,19 @@
       z-index: -1;
       background: radial-gradient(circle at 20% 30%, #8b5cf6 0%, transparent 40%),
                   radial-gradient(circle at 80% 70%, #3b82f6 0%, transparent 50%);
-      filter: blur(90px);
+      filter: blur(100px);
     }
 
     .container {
-      width: 90%;
-      max-width: 960px;
-      margin-top: 2rem;
-      padding: 2rem;
+      width: 95%;
+      max-width: 1000px;
+      margin: 2rem 0;
+      padding: 1.5rem;
       backdrop-filter: blur(20px);
       background-color: var(--glass-bg-light);
-      border-radius: 20px;
+      border-radius: 16px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     [data-theme="dark"] .container {
@@ -69,24 +67,36 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       text-align: center;
       margin-bottom: 0.5rem;
     }
 
-    p.subtitle {
+    .subtitle {
       text-align: center;
       font-size: 1.1rem;
       margin-bottom: 2rem;
       color: var(--accent);
     }
 
-    iframe {
+    .iframe-wrapper {
+      position: relative;
       width: 100%;
-      height: 900px;
-      border: none;
+      padding-bottom: 130%; /* Adjusts height responsively */
+      height: 0;
+      overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
     }
 
     footer {
@@ -118,19 +128,39 @@
       background-color: #7c3aed;
     }
 
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 1024px) {
+      .iframe-wrapper {
+        padding-bottom: 70%;
+      }
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
       }
-      iframe {
-        height: 600px;
+
+      .theme-toggle {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
       }
     }
 
     @media (max-width: 480px) {
-      .theme-toggle {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.85rem;
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .iframe-wrapper {
+        padding-bottom: 140%;
       }
     }
   </style>
@@ -146,11 +176,13 @@
   <div class="container">
     <h1>Sadique Ahmed</h1>
     <p class="subtitle">Resume Viewer</p>
-    <iframe src="https://drive.google.com/file/d/1LdT6x_90PlIF8st4R3TdNH7JnEYOBJrZ/preview" allow="autoplay"></iframe>
+    <div class="iframe-wrapper">
+      <iframe src="https://drive.google.com/file/d/1LdT6x_90PlIF8st4R3TdNH7JnEYOBJrZ/preview" allow="autoplay"></iframe>
+    </div>
   </div>
 
   <footer>
-    &copy; 2025 Sadique Ahmed &middot; 
+    &copy; 2025 Sadique Ahmed ·
     <a href="mailto:youremail@example.com">Email</a> |
     <a href="https://www.linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a>
   </footer>
